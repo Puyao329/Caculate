@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var secondNumber: Double = 0.00//初始化第二次的取值
     private var lastOperators: String = ""//记录上次计算结果
     private var lastIsOperator: Int = -1//记录当前是否进行计算操作，默认为0，不进行，1为进行
-
+    private var count : Int = 0//对小数点进行计数，最多只能有一个小数点
     //onclick()方法，触发onClickListener接口
     override fun onClick(view: View?) {
         var str: String = content.text.toString()//获取当前文本框的内容
@@ -132,6 +132,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     lastIsOperator = 0
                 }
                 button12 -> {
+
                     lastIsOperator = 1
                     secondNumber = 0.0
                     lastOperators = "%"
@@ -150,7 +151,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     lastOperators = ")"
                 }
                 button24 -> {
-
                     opratorCalc(operatorNumber, "÷")
                     content.setText(str + "÷")
                     lastIsOperator = 1
@@ -182,17 +182,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 //小数点
                 button63 -> {
+                    if(str != "" && count == 0){
                     content.setText(str + ".")
+                        count=1
+                    }
+                    else{content.setText("ERROR")
+                            return}
                     lastIsOperator = 0
-                    lastOperators = "."
+                    //lastOperators = "."
                 }
                 //等于按钮
                 button64 -> {
-                    var result: Double = 0.0
                     if (TextUtils.isEmpty(lastOperators)) {
                         return
                     }
                     opratorResult(operatorNumber)
+//                    opratorCalc(operatorNumber, "=")
                     secondNumber = 0.0
                     lastOperators = "="
                     lastIsOperator = 1
@@ -206,6 +211,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     firstNumber = 0.0
                     secondNumber = 0.0
                     lastOperators = ""
+                    count=0
                 }
                 //后退按钮
                 button14 -> {
@@ -218,20 +224,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 //函数
                 sin ->{
-                    content.setText(Math.sin(str.toDouble()).toString())
-                    lastIsOperator = 0
+                    lastIsOperator = 1
+                    secondNumber = 0.0
+                    lastOperators = "sin"
+                    opratorCalc(operatorNumber, "sin")
+                    content.setText(firstNumber.toString())
                 }
                 cos ->{
-                    content.setText(Math.cos(str.toDouble()).toString())
-                    lastIsOperator = 0
+                    lastIsOperator = 1
+                    secondNumber = 0.0
+                    lastOperators = "cos"
+                    opratorCalc(operatorNumber, "cos")
+                    content.setText(firstNumber.toString())
                 }
                 square ->{
-                    content.setText((str.toDouble()*str.toDouble()).toString())
-                    lastIsOperator = 0
+                    lastIsOperator = 1
+                    secondNumber = 0.0
+                    lastOperators = "square"
+                    opratorCalc(operatorNumber, "square")
+                    content.setText(firstNumber.toString())
                 }
                 sqrt ->{
-                    content.setText(Math.sqrt(str.toDouble()).toString())
-                    lastIsOperator = 0
+                    lastIsOperator = 1
+                    secondNumber = 0.0
+                    lastOperators = "sqrt"
+                    opratorCalc(operatorNumber, "sqrt")
+                    content.setText(firstNumber.toString())
                 }
 
             }
@@ -259,21 +277,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (lastOperators == "+") {
                 firstNumber += operatorNumber.toDouble()
             }
-            if (lastOperators == "-") {
+            else if (lastOperators == "-") {
                 firstNumber -= operatorNumber.toDouble()
             }
-            if (lastOperators == "×") {
+            else if (lastOperators == "×") {
                 firstNumber *= operatorNumber.toDouble()
             }
-            if (lastOperators == "÷") {
+            else if (lastOperators == "÷") {
                 firstNumber /= operatorNumber.toDouble()
             }
-            if (lastOperators == "=") {
+            else if (lastOperators == "=") {
                 firstNumber = operatorNumber.toDouble()
             }
-            if (lastOperators == "%"){
-                firstNumber = operatorNumber.toDouble()*0.01
-            }
+//            else if (lastOperators == "%"){
+//                firstNumber = operatorNumber.toDouble()*0.01
+//            }
+//            else if (lastOperators == "sin"){
+//                firstNumber = Math.sin(operatorNumber.toDouble())
+//            }
+//            else if (lastOperators == "cos"){
+//                firstNumber = Math.cos(operatorNumber.toDouble())
+//            }
         }
     }
 
@@ -304,7 +328,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             else if (lastOperators == "%"){
                 firstNumber = operatorNumber.toDouble()*0.01
             }
-
+            else if (lastOperators == "sin"){
+                firstNumber = Math.sin(operatorNumber.toDouble())
+            }
+            else if (lastOperators == "cos"){
+                firstNumber = Math.cos(operatorNumber.toDouble())
+            }
+            else if (lastOperators == "square"){
+                firstNumber = operatorNumber.toDouble()*operatorNumber.toDouble();
+            }
+            else if (lastOperators == "sqrt"){
+                firstNumber = Math.sqrt(operatorNumber.toDouble())
+            }
             return
         }
         operate(operatorNumber)
