@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         //分别获取按钮的内容到文本编辑框
-        if (view!=null){
+        if (view!=null) {
             when (view) {
                 num0 -> {
                     content.setText(str + "0")
@@ -155,39 +155,42 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     content.setText(str + "÷")
                     lastIsOperator = 1
                     lastOperators = "÷"
-
+                    count = 0;
                 }
                 button34 -> {
                     opratorCalc(operatorNumber, "×")
                     content.setText(str + "×")
                     lastIsOperator = 1
                     lastOperators = "×"
-
+                    count = 0;
                 }
                 button44 -> {
                     opratorCalc(operatorNumber, "-")
                     content.setText(str + "-")
                     lastIsOperator = 1
                     lastOperators = "-"
+                    count = 0;
                 }
                 button54 -> {
                     opratorCalc(operatorNumber, "+")
                     content.setText(str + "+")
                     lastIsOperator = 1
                     lastOperators = "+"
+                    count = 0;
                 }
                 //+/-
                 button61 -> {
-                        content.setText("${-str.toDouble()}")
+                    content.setText("${-str.toDouble()}")
                 }
                 //小数点
                 button63 -> {
-                    if(str != "" && count == 0){
-                    content.setText(str + ".")
-                        count=1
+                    if (str != "" && count == 0) {
+                        content.setText(str + ".")
+                        count = 1
+                    } else {
+                        content.setText("ERROR")
+                        return
                     }
-                    else{content.setText("ERROR")
-                            return}
                     lastIsOperator = 0
                     //lastOperators = "."
                 }
@@ -211,7 +214,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     firstNumber = 0.0
                     secondNumber = 0.0
                     lastOperators = ""
-                    count=0
+                    count = 0
                 }
                 //后退按钮
                 button14 -> {
@@ -223,28 +226,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     lastIsOperator = 0
                 }
                 //函数
-                sin ->{
+                sin -> {
                     lastIsOperator = 1
                     secondNumber = 0.0
                     lastOperators = "sin"
                     opratorCalc(operatorNumber, "sin")
                     content.setText(firstNumber.toString())
                 }
-                cos ->{
+
+
+                cos -> {
                     lastIsOperator = 1
                     secondNumber = 0.0
                     lastOperators = "cos"
                     opratorCalc(operatorNumber, "cos")
                     content.setText(firstNumber.toString())
                 }
-                square ->{
+                square -> {
                     lastIsOperator = 1
                     secondNumber = 0.0
                     lastOperators = "square"
                     opratorCalc(operatorNumber, "square")
                     content.setText(firstNumber.toString())
                 }
-                sqrt ->{
+                sqrt -> {
                     lastIsOperator = 1
                     secondNumber = 0.0
                     lastOperators = "sqrt"
