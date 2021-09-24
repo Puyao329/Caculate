@@ -199,11 +199,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     if (TextUtils.isEmpty(lastOperators)) {
                         return
                     }
+                    var calculator:Calculator
                     opratorResult(operatorNumber)
 //                    opratorCalc(operatorNumber, "=")
                     secondNumber = 0.0
                     lastOperators = "="
                     lastIsOperator = 1
+                   // var result:Double=calculator.Eval(content.text.toString())
                     content.setText(str + "=\n" + firstNumber)
 
                 }
@@ -264,6 +266,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //运算函数
     private fun operate(operatorNumber: String) {
+        var sArry:CharArray
+4
+
         if (secondNumber?.equals(0.0)) {//第二个数不为零
             if (lastOperators.equals("+")) {
                 secondNumber = operatorNumber.toDouble()
