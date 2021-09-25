@@ -25,22 +25,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btn_7: Button = findViewById(R.id.num7)
         val btn_8: Button = findViewById(R.id.num8)
         val btn_9: Button = findViewById(R.id.num9)
-        val btn_percent: Button = findViewById(R.id.button12)
-        val btn_clear: Button = findViewById(R.id.button13)
+        val btn_percent: Button = findViewById(R.id.button51)
+        val btn_clear: Button = findViewById(R.id.button11)
         val btn_del: Button = findViewById(R.id.button14)
-        val btn_left_bracket: Button = findViewById(R.id.button22)
-        val btn_right_bracket: Button = findViewById(R.id.button23)
-        val btn_divide: Button = findViewById(R.id.button24)
-        val btn_multiple: Button = findViewById(R.id.button34)
-        val btn_minus: Button = findViewById(R.id.button44)
-        val btn_add: Button = findViewById(R.id.button54)
-        val btn_plusminus:Button = findViewById(R.id.button61)
-        val btn_point: Button = findViewById(R.id.button63)
+        val btn_left_bracket: Button = findViewById(R.id.button12)
+        val btn_right_bracket: Button = findViewById(R.id.button13)
+        val btn_divide: Button = findViewById(R.id.button54)
+        val btn_multiple: Button = findViewById(R.id.button44)
+        val btn_minus: Button = findViewById(R.id.button34)
+        val btn_add: Button = findViewById(R.id.button24)
+        val btn_point: Button = findViewById(R.id.button53)
         val btn_equal: Button = findViewById(R.id.button64)
-        val btn_sin : Button = findViewById(R.id.sin)
-        val btn_cos : Button = findViewById(R.id.cos)
-        val btn_square : Button = findViewById(R.id.square)
-        val btn_sqrt : Button = findViewById(R.id.sqrt)
+
 
         //实例化按钮
         btn_0.setOnClickListener(this)
@@ -64,126 +60,89 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_add.setOnClickListener(this)
         btn_point.setOnClickListener(this)
         btn_equal.setOnClickListener(this)
-        btn_plusminus.setOnClickListener(this)
-        btn_sin.setOnClickListener(this)
-        btn_cos.setOnClickListener(this)
-        btn_square.setOnClickListener(this)
-        btn_sqrt.setOnClickListener(this)
+
     }
-    private var firstNumber: Double = 0.00//初始化第一次的取值
-    private var secondNumber: Double = 0.00//初始化第二次的取值
-    private var lastOperators: String = ""//记录上次计算结果
-    private var lastIsOperator: Int = -1//记录当前是否进行计算操作，默认为0，不进行，1为进行
-    private var count : Int = 0//对小数点进行计数，最多只能有一个小数点
+
+    private var count: Int = 0//对小数点进行计数，最多只能有一个小数点
+
     //onclick()方法，触发onClickListener接口
     override fun onClick(view: View?) {
         var str: String = content.text.toString()//获取当前文本框的内容
-        var operatorNumber: String = "" //初始化操作数为“”
-        if (str.isEmpty()) {//若当前输入数为null则设置文本框为“”
-            content.setText("")
-        }
-        operatorNumber = content.text.toString()//根据文本框的内容更改操作
-        if (!lastOperators.equals("")) run {
-            var index: Int = operatorNumber.lastIndexOf(lastOperators)
-            operatorNumber = operatorNumber.substring(index + 1)
-        }
 
         //分别获取按钮的内容到文本编辑框
-        if (view!=null) {
+        if (view != null) {
             when (view) {
                 num0 -> {
                     content.setText(str + "0")
-                    lastIsOperator = 0
                 }
                 num1 -> {
                     content.setText(str + "1")
-                    lastIsOperator = 0
+
                 }
                 num2 -> {
                     content.setText(str + "2")
-                    lastIsOperator = 0
+
                 }
                 num3 -> {
                     content.setText(str + "3")
-                    lastIsOperator = 0
+
                 }
                 num4 -> {
                     content.setText(str + "4")
-                    lastIsOperator = 0
+
                 }
                 num5 -> {
                     content.setText(str + "5")
-                    lastIsOperator = 0
+
                 }
                 num6 -> {
                     content.setText(str + "6")
-                    lastIsOperator = 0
+
                 }
                 num7 -> {
                     content.setText(str + "7")
-                    lastIsOperator = 0
+
                 }
                 num8 -> {
                     content.setText(str + "8")
-                    lastIsOperator = 0
+
                 }
                 num9 -> {
                     content.setText(str + "9")
-                    lastIsOperator = 0
+
+                }
+                // %
+                button51 -> {
+                    content.setText(str + "%")
+
                 }
                 button12 -> {
-
-                    lastIsOperator = 1
-                    secondNumber = 0.0
-                    lastOperators = "%"
-                    opratorCalc(operatorNumber, "%")
-                    content.setText(firstNumber.toString())
-
-                }
-                button22 -> {
                     content.setText(str + "(")
-                    lastIsOperator = 0
-                    lastOperators = "("
+
                 }
-                button23 -> {
+                button13 -> {
                     content.setText(str + ")")
-                    lastIsOperator = 0
-                    lastOperators = ")"
-                }
-                button24 -> {
-                    opratorCalc(operatorNumber, "÷")
-                    content.setText(str + "÷")
-                    lastIsOperator = 1
-                    lastOperators = "÷"
-                    count = 0;
-                }
-                button34 -> {
-                    opratorCalc(operatorNumber, "×")
-                    content.setText(str + "×")
-                    lastIsOperator = 1
-                    lastOperators = "×"
-                    count = 0;
-                }
-                button44 -> {
-                    opratorCalc(operatorNumber, "-")
-                    content.setText(str + "-")
-                    lastIsOperator = 1
-                    lastOperators = "-"
-                    count = 0;
+
                 }
                 button54 -> {
-                    opratorCalc(operatorNumber, "+")
+                    content.setText(str + "/")
+                    count = 0
+                }
+                button44 -> {
+                    content.setText(str + "*")
+                    count = 0
+                }
+                button34 -> {
+                    content.setText(str + "-")
+                    count = 0
+                }
+                button24 -> {
                     content.setText(str + "+")
-                    lastIsOperator = 1
-                    lastOperators = "+"
-                    count = 0;
+                    count = 0
                 }
-                //+/-
-                button61 -> {
-                    content.setText("${-str.toDouble()}")
-                }
+
                 //小数点
-                button63 -> {
+                button53 -> {
                     if (str != "" && count == 0) {
                         content.setText(str + ".")
                         count = 1
@@ -191,31 +150,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         content.setText("ERROR")
                         return
                     }
-                    lastIsOperator = 0
-                    //lastOperators = "."
                 }
                 //等于按钮
                 button64 -> {
-                    if (TextUtils.isEmpty(lastOperators)) {
-                        return
-                    }
-                    var calculator:Calculator
-                    opratorResult(operatorNumber)
-//                    opratorCalc(operatorNumber, "=")
-                    secondNumber = 0.0
-                    lastOperators = "="
-                    lastIsOperator = 1
-                   // var result:Double=calculator.Eval(content.text.toString())
-                    content.setText(str + "=\n" + firstNumber)
+                    var calculator: Calculator = Calculator()
+                    var result: Double = calculator.Eval(content.text.toString())
+                    content.setText(result.toString())
 
                 }
                 //清空按钮
-                button13 -> {
+                button11 -> {
                     content.setText("")
-                    lastIsOperator = 0
-                    firstNumber = 0.0
-                    secondNumber = 0.0
-                    lastOperators = ""
                     count = 0
                 }
                 //后退按钮
@@ -224,135 +169,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         return
                     }
                     content.setText(str.substring(0, str.length - 1))
-
-                    lastIsOperator = 0
-                }
-                //函数
-                sin -> {
-                    lastIsOperator = 1
-                    secondNumber = 0.0
-                    lastOperators = "sin"
-                    opratorCalc(operatorNumber, "sin")
-                    content.setText(firstNumber.toString())
+                    count = 0
                 }
 
-
-                cos -> {
-                    lastIsOperator = 1
-                    secondNumber = 0.0
-                    lastOperators = "cos"
-                    opratorCalc(operatorNumber, "cos")
-                    content.setText(firstNumber.toString())
-                }
-                square -> {
-                    lastIsOperator = 1
-                    secondNumber = 0.0
-                    lastOperators = "square"
-                    opratorCalc(operatorNumber, "square")
-                    content.setText(firstNumber.toString())
-                }
-                sqrt -> {
-                    lastIsOperator = 1
-                    secondNumber = 0.0
-                    lastOperators = "sqrt"
-                    opratorCalc(operatorNumber, "sqrt")
-                    content.setText(firstNumber.toString())
-                }
 
             }
         }
-    }
-
-
-    //运算函数
-    private fun operate(operatorNumber: String) {
-        var sArry:CharArray
-4
-
-        if (secondNumber?.equals(0.0)) {//第二个数不为零
-            if (lastOperators.equals("+")) {
-                secondNumber = operatorNumber.toDouble()
-                firstNumber += secondNumber
-            } else if (lastOperators == "-") {
-                secondNumber = operatorNumber.toDouble()
-                firstNumber -= secondNumber
-            } else if (lastOperators == "×") {
-                secondNumber = operatorNumber.toDouble()
-                firstNumber *= secondNumber
-            } else if (lastOperators == "÷") {
-                secondNumber = operatorNumber.toDouble()
-                firstNumber /= secondNumber
-            }
-        } else {//第二个数为零
-            if (lastOperators == "+") {
-                firstNumber += operatorNumber.toDouble()
-            }
-            else if (lastOperators == "-") {
-                firstNumber -= operatorNumber.toDouble()
-            }
-            else if (lastOperators == "×") {
-                firstNumber *= operatorNumber.toDouble()
-            }
-            else if (lastOperators == "÷") {
-                firstNumber /= operatorNumber.toDouble()
-            }
-            else if (lastOperators == "=") {
-                firstNumber = operatorNumber.toDouble()
-            }
-//            else if (lastOperators == "%"){
-//                firstNumber = operatorNumber.toDouble()*0.01
-//            }
-//            else if (lastOperators == "sin"){
-//                firstNumber = Math.sin(operatorNumber.toDouble())
-//            }
-//            else if (lastOperators == "cos"){
-//                firstNumber = Math.cos(operatorNumber.toDouble())
-//            }
-        }
-    }
-
-    //返回计算结果
-    private fun opratorResult(operatorNumber: String) {
-        operate(operatorNumber)
-    }
-
-    //按当前计算结果进行下一次的数据输入及计算
-    fun opratorCalc(operatorNumber: String, currentOprator: String) {
-        if (TextUtils.isEmpty(lastOperators)) {
-            firstNumber = operatorNumber.toDouble()
-            return
-        }
-        if(lastOperators.equals(currentOprator)){
-            if(lastOperators == "÷"){
-                firstNumber /= operatorNumber.toDouble()
-            }
-            else if(lastOperators == "×"){
-                firstNumber *= operatorNumber.toDouble()
-            }
-            else if(lastOperators == "+"){
-                firstNumber += operatorNumber.toDouble()
-            }
-            else if(lastOperators == "-"){
-                firstNumber -= operatorNumber.toDouble()
-            }
-            else if (lastOperators == "%"){
-                firstNumber = operatorNumber.toDouble()*0.01
-            }
-            else if (lastOperators == "sin"){
-                firstNumber = Math.sin(operatorNumber.toDouble())
-            }
-            else if (lastOperators == "cos"){
-                firstNumber = Math.cos(operatorNumber.toDouble())
-            }
-            else if (lastOperators == "square"){
-                firstNumber = operatorNumber.toDouble()*operatorNumber.toDouble();
-            }
-            else if (lastOperators == "sqrt"){
-                firstNumber = Math.sqrt(operatorNumber.toDouble())
-            }
-            return
-        }
-        operate(operatorNumber)
     }
 }
 
