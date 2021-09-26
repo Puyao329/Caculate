@@ -39,9 +39,9 @@ class Caculater {
             !sArry[i].equals(")")&&!sArry[i].equals("%")){
                 houx.push(sArry[i]);
                 //否则是字符，若符号栈为空直接入栈
-            }else if(fuhao.isEmpty()){
+            }else if(fuhao.isEmpty()) {
+
                 fuhao.push(sArry[i]);
-                //如果为（括号，直接入符号栈
             }else if(sArry[i].equals("(")){
                 fuhao.push(sArry[i]);
                 //如果为）括号
@@ -114,8 +114,7 @@ class Caculater {
                 end.push(b * 0.01);
             }else if (houx.get(i).isEmpty()) {
                 continue;
-            }
-            else {
+            }else {
                 //不是符号，也就是数字的情况，转类型，push入栈
                 end.push(Double.parseDouble(houx.get(i)));
 

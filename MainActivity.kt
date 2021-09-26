@@ -1,16 +1,23 @@
 package com.example.caculate
 
+import android.content.Context
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     //private lateinit var content : EditText
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,17 +32,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btn_7: Button = findViewById(R.id.num7)
         val btn_8: Button = findViewById(R.id.num8)
         val btn_9: Button = findViewById(R.id.num9)
-        val btn_percent: Button = findViewById(R.id.button51)
-        val btn_clear: Button = findViewById(R.id.button11)
-        val btn_del: Button = findViewById(R.id.button14)
-        val btn_left_bracket: Button = findViewById(R.id.button12)
-        val btn_right_bracket: Button = findViewById(R.id.button13)
-        val btn_divide: Button = findViewById(R.id.button54)
-        val btn_multiple: Button = findViewById(R.id.button44)
-        val btn_minus: Button = findViewById(R.id.button34)
-        val btn_add: Button = findViewById(R.id.button24)
-        val btn_point: Button = findViewById(R.id.button53)
-        val btn_equal: Button = findViewById(R.id.button64)
+        val btn_percent: Button = findViewById(R.id.button_percent)
+        val btn_clear: Button = findViewById(R.id.button_clear)
+        val btn_del: Button = findViewById(R.id.button_del)
+        val btn_left_bracket: Button = findViewById(R.id.button_left)
+        val btn_right_bracket: Button = findViewById(R.id.button_right)
+        val btn_divide: Button = findViewById(R.id.button_div)
+        val btn_multiple: Button = findViewById(R.id.button_mul)
+        val btn_minus: Button = findViewById(R.id.button_sub)
+        val btn_add: Button = findViewById(R.id.button_add)
+        val btn_point: Button = findViewById(R.id.button_point)
+        val btn_equal: Button = findViewById(R.id.button_equal)
 
 
         //实例化按钮
@@ -112,37 +119,37 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 }
                 // %
-                button51 -> {
+                button_percent -> {
                     content.setText(str + "%")
 
                 }
-                button12 -> {
+                button_left -> {
                     content.setText(str + "(")
 
                 }
-                button13 -> {
+                button_right -> {
                     content.setText(str + ")")
 
                 }
-                button54 -> {
+                button_div -> {
                     content.setText(str + "/")
                     count = 0
                 }
-                button44 -> {
+                button_mul -> {
                     content.setText(str + "*")
                     count = 0
                 }
-                button34 -> {
+                button_sub -> {
                     content.setText(str + "-")
                     count = 0
                 }
-                button24 -> {
+                button_add -> {
                     content.setText(str + "+")
                     count = 0
                 }
 
                 //小数点
-                button53 -> {
+                button_point -> {
                     if (str != "" && count == 0) {
                         content.setText(str + ".")
                         count = 1
@@ -152,30 +159,50 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 //等于按钮
-                button64 -> {
+                button_equal -> {
                     var calculator: Calculator = Calculator()
                     var result: Double = calculator.Eval(content.text.toString())
                     content.setText(result.toString())
 
                 }
                 //清空按钮
-                button11 -> {
+                button_clear -> {
                     content.setText("")
                     count = 0
                 }
                 //后退按钮
-                button14 -> {
+                button_del -> {
                     if (TextUtils.isEmpty((content.text))) {
                         return
                     }
                     content.setText(str.substring(0, str.length - 1))
                     count = 0
                 }
-
-
             }
         }
     }
+    //创建菜单，加载menu_main.xml文件
+     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main,menu)
+        return true;
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.menu_exit ->{
+                finish()
+                return true
+            }
+            R.id.menu_help ->{
+                Toast.makeText(this,"这是帮助文档",Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
 
 
