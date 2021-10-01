@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="18">
+    android:weightSum="20">
 
     <EditText
         android:id="@+id/content"
@@ -24,24 +24,9 @@
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.5"
         android:orientation="horizontal"
-        android:weightSum="6">
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+        android:weightSum="4">
 
         <Button
             android:id="@+id/button_clear"
@@ -49,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="C"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_left"
@@ -57,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="("
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_right"
@@ -65,7 +50,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text=")"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_del"
@@ -73,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="←"
-            android:textSize="35dp" />
+            android:textSize="45dp" />
 
     </LinearLayout>
 
@@ -81,16 +66,9 @@
         android:id="@+id/line2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.5"
         android:orientation="horizontal"
-        android:weightSum="6">
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+        android:weightSum="4">
 
         <Button
             android:id="@+id/num7"
@@ -98,7 +76,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="7"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num8"
@@ -106,7 +84,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="8"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num9"
@@ -114,7 +92,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="9"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_add"
@@ -122,15 +100,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="+"
-            android:textSize="30dp" />
-
-        <Button
-            android:id="@+id/button20"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
     </LinearLayout>
 
@@ -138,16 +108,9 @@
         android:id="@+id/line3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.5"
         android:orientation="horizontal"
-        android:weightSum="6">
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+        android:weightSum="4">
 
         <Button
             android:id="@+id/num4"
@@ -155,7 +118,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="4"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num5"
@@ -163,7 +126,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="5"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num6"
@@ -171,7 +134,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="6"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_sub"
@@ -179,33 +142,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="-"
-            android:textSize="30dp" />
-
-        <Button
-            android:id="@+id/button30"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/line4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.5"
         android:orientation="horizontal"
-        android:weightSum="6">
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+        android:weightSum="4">
 
         <Button
             android:id="@+id/num1"
@@ -213,7 +160,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="1"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num2"
@@ -221,7 +168,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="2"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num3"
@@ -229,7 +176,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="3"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_mul"
@@ -237,15 +184,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="×"
-            android:textSize="30dp" />
-
-        <Button
-            android:id="@+id/button40"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
     </LinearLayout>
 
@@ -253,17 +192,9 @@
         android:id="@+id/line5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.5"
         android:orientation="horizontal"
-        android:weightSum="6">
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="30dp" />
+        android:weightSum="4">
 
         <Button
             android:id="@+id/button_percent"
@@ -271,7 +202,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="%"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/num0"
@@ -279,7 +210,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="0"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <Button
             android:id="@+id/button_point"
@@ -287,7 +218,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="."
-            android:textSize="35dp" />
+            android:textSize="45dp" />
 
         <Button
             android:id="@+id/button_div"
@@ -295,18 +226,24 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="÷"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <Button
             android:id="@+id/button_equal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:text="="
-            android:textSize="30dp" />
-
+            android:textSize="40dp" />
     </LinearLayout>
-
-
-
-    </LinearLayout>
+</LinearLayout>

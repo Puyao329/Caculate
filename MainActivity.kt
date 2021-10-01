@@ -1,6 +1,7 @@
 package com.example.caculate
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,10 +14,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import android.content.res.Configuration
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    //private lateinit var content : EditText
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btn_point: Button = findViewById(R.id.button_point)
         val btn_equal: Button = findViewById(R.id.button_equal)
 
-
         //实例化按钮
         btn_0.setOnClickListener(this)
         btn_1.setOnClickListener(this)
@@ -68,6 +68,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_point.setOnClickListener(this)
         btn_equal.setOnClickListener(this)
 
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        //横屏
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val btn_PI:Button = findViewById(R.id.button_PI)
+            val btn_square:Button=findViewById(R.id.button_square)
+            val btn_cube:Button=findViewById(R.id.button_cube)
+            val btn_genhao:Button=findViewById(R.id.button_genhao)
+            val btn_sin:Button=findViewById(R.id.button_sin)
+            val btn_cos:Button=findViewById(R.id.button_cos)
+            val btn_tan:Button=findViewById(R.id.button_tan)
+            val btn_ln:Button=findViewById(R.id.button_ln)
+            val btn_log: Button = findViewById(R.id.button_log)
+            btn_PI.setOnClickListener(this)
+            btn_square.setOnClickListener(this)
+            btn_cube.setOnClickListener(this)
+            btn_genhao.setOnClickListener(this)
+            btn_sin.setOnClickListener(this)
+            btn_cos.setOnClickListener(this)
+            btn_tan.setOnClickListener(this)
+            btn_ln.setOnClickListener(this)
+            btn_log.setOnClickListener(this)
+
+        }
     }
 
     private var count: Int = 0//对小数点进行计数，最多只能有一个小数点
@@ -147,7 +172,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     content.setText(str + "+")
                     count = 0
                 }
+                button_PI -> {
+                    content.setText(str + "∏")
+                }
+                button_genhao -> {
+                    content.setText(str + "√(")
+                }
+                button_square -> {
+                    content.setText(str + "²")
+                }
+                button_cube -> {
+                    content.setText(str + "³")
+                }
+                button_ln -> {
+                    content.setText(str + "㏑(")
+                }
+                button_log -> {
+                    content.setText(str + "㏒(")
 
+                }
+                button_sin ->{
+                    content.setText(str + "sin(")
+                }
+                button_cos ->{
+                    content.setText(str + "cos(")
+                }
+                button_tan ->{
+                    content.setText(str + "tan(")
+                }
                 //小数点
                 button_point -> {
                     if (str != "" && count == 0) {
@@ -181,27 +233,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
     //创建菜单，加载menu_main.xml文件
-     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main,menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true;
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
-            R.id.menu_exit ->{
+        when (item.itemId) {
+            R.id.menu_exit -> {
                 finish()
                 return true
             }
-            R.id.menu_help ->{
-                Toast.makeText(this,"这是帮助文档",Toast.LENGTH_SHORT).show()
+            R.id.menu_help -> {
+                Toast.makeText(this, "这是帮助文档", Toast.LENGTH_SHORT).show()
                 return true
             }
 
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 
 }
 

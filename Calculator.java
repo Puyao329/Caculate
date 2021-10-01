@@ -19,7 +19,7 @@ class Caculater {
             if(i==j){
                 bool=false;
             }
-            if(str.charAt(j)=='+'||str.charAt(j)=='-'||str.charAt(j)=='*'||str.charAt(j)=='/'||str.charAt(j)=='('||str.charAt(j)==')'){
+            if(str.charAt(j)=='+'||str.charAt(j)=='-'||str.charAt(j)=='*'||str.charAt(j)=='/'||str.charAt(j)=='('||str.charAt(j)==')'||str.charAt(j)=='%'){
                 temp+="#";
                 temp+=str.charAt(j);
                 temp+="#";
@@ -36,7 +36,7 @@ class Caculater {
             if(!sArry[i].equals("+")&&
             !sArry[i].equals("-")&&!sArry[i].equals("*")&&
             !sArry[i].equals("/")&&!sArry[i].equals("(")&&
-            !sArry[i].equals(")")&&!sArry[i].equals("%")){
+            !sArry[i].equals(")")&&!sArry[i].equals("%")&&!sArry[i].equals("²")){
                 houx.push(sArry[i]);
                 //否则是字符，若符号栈为空直接入栈
             }else if(fuhao.isEmpty()) {
@@ -112,7 +112,11 @@ class Caculater {
                 Double b = end.pop();
                 //Double a = end.pop();
                 end.push(b * 0.01);
-            }else if (houx.get(i).isEmpty()) {
+            }
+//            else if(houx.get(i).equals("²")){
+//                Double b = end.pop();
+//                end.push(b*b); }
+            else if (houx.get(i).isEmpty()) {
                 continue;
             }else {
                 //不是符号，也就是数字的情况，转类型，push入栈
