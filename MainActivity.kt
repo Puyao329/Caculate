@@ -1,6 +1,7 @@
 package com.example.caculate
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.res.Configuration
+import android.os.PersistableBundle
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -22,81 +24,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //分别设置监听器
-        val btn_0: Button = findViewById(R.id.num0)
-        val btn_1: Button = findViewById(R.id.num1)
-        val btn_2: Button = findViewById(R.id.num2)
-        val btn_3: Button = findViewById(R.id.num3)
-        val btn_4: Button = findViewById(R.id.num4)
-        val btn_5: Button = findViewById(R.id.num5)
-        val btn_6: Button = findViewById(R.id.num6)
-        val btn_7: Button = findViewById(R.id.num7)
-        val btn_8: Button = findViewById(R.id.num8)
-        val btn_9: Button = findViewById(R.id.num9)
-        val btn_percent: Button = findViewById(R.id.button_percent)
-        val btn_clear: Button = findViewById(R.id.button_clear)
-        val btn_del: Button = findViewById(R.id.button_del)
-        val btn_left_bracket: Button = findViewById(R.id.button_left)
-        val btn_right_bracket: Button = findViewById(R.id.button_right)
-        val btn_divide: Button = findViewById(R.id.button_div)
-        val btn_multiple: Button = findViewById(R.id.button_mul)
-        val btn_minus: Button = findViewById(R.id.button_sub)
-        val btn_add: Button = findViewById(R.id.button_add)
-        val btn_point: Button = findViewById(R.id.button_point)
-        val btn_equal: Button = findViewById(R.id.button_equal)
-
-        //实例化按钮
-        btn_0.setOnClickListener(this)
-        btn_1.setOnClickListener(this)
-        btn_2.setOnClickListener(this)
-        btn_3.setOnClickListener(this)
-        btn_4.setOnClickListener(this)
-        btn_5.setOnClickListener(this)
-        btn_6.setOnClickListener(this)
-        btn_7.setOnClickListener(this)
-        btn_8.setOnClickListener(this)
-        btn_9.setOnClickListener(this)
-        btn_percent.setOnClickListener(this)
-        btn_clear.setOnClickListener(this)
-        btn_del.setOnClickListener(this)
-        btn_left_bracket.setOnClickListener(this)
-        btn_right_bracket.setOnClickListener(this)
-        btn_divide.setOnClickListener(this)
-        btn_multiple.setOnClickListener(this)
-        btn_minus.setOnClickListener(this)
-        btn_add.setOnClickListener(this)
-        btn_point.setOnClickListener(this)
-        btn_equal.setOnClickListener(this)
+        //屏幕方向监听
+        val orientation = resources.configuration.orientation
+        if(orientation==Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_main)
+           laylout_land()
+        }else{
+            layout()
+        }
 
     }
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+        setContentView(R.layout.activity_main)
         //横屏
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            val btn_PI:Button = findViewById(R.id.button_PI)
-            val btn_square:Button=findViewById(R.id.button_square)
-            val btn_cube:Button=findViewById(R.id.button_cube)
-            val btn_genhao:Button=findViewById(R.id.button_genhao)
-            val btn_sin:Button=findViewById(R.id.button_sin)
-            val btn_cos:Button=findViewById(R.id.button_cos)
-            val btn_tan:Button=findViewById(R.id.button_tan)
-            val btn_ln:Button=findViewById(R.id.button_ln)
-            val btn_log: Button = findViewById(R.id.button_log)
-            btn_PI.setOnClickListener(this)
-            btn_square.setOnClickListener(this)
-            btn_cube.setOnClickListener(this)
-            btn_genhao.setOnClickListener(this)
-            btn_sin.setOnClickListener(this)
-            btn_cos.setOnClickListener(this)
-            btn_tan.setOnClickListener(this)
-            btn_ln.setOnClickListener(this)
-            btn_log.setOnClickListener(this)
-
+            laylout_land()
+        }else{
+            layout()
         }
     }
 
-    private var count: Int = 0//对小数点进行计数，最多只能有一个小数点
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        outState.putString()
+//    }
 
+
+    private var count: Int = 0//对小数点进行计数，最多只能有一个小数点
     //onclick()方法，触发onClickListener接口
     override fun onClick(view: View?) {
         var str: String = content.text.toString()//获取当前文本框的内容
@@ -256,7 +211,73 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return super.onOptionsItemSelected(item)
     }
 
+    fun laylout_land() {
+        layout()
+        val btn_PI:Button = findViewById(R.id.button_PI)
+        val btn_square:Button=findViewById(R.id.button_square)
+        val btn_cube:Button=findViewById(R.id.button_cube)
+        val btn_genhao:Button=findViewById(R.id.button_genhao)
+        val btn_sin:Button=findViewById(R.id.button_sin)
+        val btn_cos:Button=findViewById(R.id.button_cos)
+        val btn_tan:Button=findViewById(R.id.button_tan)
+        val btn_ln:Button=findViewById(R.id.button_ln)
+        val btn_log: Button = findViewById(R.id.button_log)
+        btn_PI.setOnClickListener(this)
+        btn_square.setOnClickListener(this)
+        btn_cube.setOnClickListener(this)
+        btn_genhao.setOnClickListener(this)
+        btn_sin.setOnClickListener(this)
+        btn_cos.setOnClickListener(this)
+        btn_tan.setOnClickListener(this)
+        btn_ln.setOnClickListener(this)
+        btn_log.setOnClickListener(this)
+    }
+    fun layout(){
+        val btn_0: Button = findViewById(R.id.num0)
+        val btn_1: Button = findViewById(R.id.num1)
+        val btn_2: Button = findViewById(R.id.num2)
+        val btn_3: Button = findViewById(R.id.num3)
+        val btn_4: Button = findViewById(R.id.num4)
+        val btn_5: Button = findViewById(R.id.num5)
+        val btn_6: Button = findViewById(R.id.num6)
+        val btn_7: Button = findViewById(R.id.num7)
+        val btn_8: Button = findViewById(R.id.num8)
+        val btn_9: Button = findViewById(R.id.num9)
+        val btn_percent: Button = findViewById(R.id.button_percent)
+        val btn_clear: Button = findViewById(R.id.button_clear)
+        val btn_del: Button = findViewById(R.id.button_del)
+        val btn_left_bracket: Button = findViewById(R.id.button_left)
+        val btn_right_bracket: Button = findViewById(R.id.button_right)
+        val btn_divide: Button = findViewById(R.id.button_div)
+        val btn_multiple: Button = findViewById(R.id.button_mul)
+        val btn_minus: Button = findViewById(R.id.button_sub)
+        val btn_add: Button = findViewById(R.id.button_add)
+        val btn_point: Button = findViewById(R.id.button_point)
+        val btn_equal: Button = findViewById(R.id.button_equal)
 
+        //实例化按钮
+        btn_0.setOnClickListener(this)
+        btn_1.setOnClickListener(this)
+        btn_2.setOnClickListener(this)
+        btn_3.setOnClickListener(this)
+        btn_4.setOnClickListener(this)
+        btn_5.setOnClickListener(this)
+        btn_6.setOnClickListener(this)
+        btn_7.setOnClickListener(this)
+        btn_8.setOnClickListener(this)
+        btn_9.setOnClickListener(this)
+        btn_percent.setOnClickListener(this)
+        btn_clear.setOnClickListener(this)
+        btn_del.setOnClickListener(this)
+        btn_left_bracket.setOnClickListener(this)
+        btn_right_bracket.setOnClickListener(this)
+        btn_divide.setOnClickListener(this)
+        btn_multiple.setOnClickListener(this)
+        btn_minus.setOnClickListener(this)
+        btn_add.setOnClickListener(this)
+        btn_point.setOnClickListener(this)
+        btn_equal.setOnClickListener(this)
+    }
 
 }
 
